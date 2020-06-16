@@ -4,7 +4,7 @@ Locate people and the stance of their bodies by analyzing an image with a PoseNe
 
 ## Overview
 
-This sample project demonstrates how to use a PoseNet model to augment a video stream from a camera. PoseNet models detect 17 different body parts or joints: eyes, ears, nose, shoulders, hips, elbow, knees, wrists, and ankles. Collectively these joints form a pose.
+This sample project demonstrates how to use a PoseNet model to augment a video stream from a camera. PoseNet models detect 17 different body parts or joints: eyes, ears, nose, shoulders, hips, elbows, knees, wrists, and ankles. Collectively these joints form a pose.
 
 ![Flow diagram illustrating the sequence of activities for estimating a pose. The flow begins on the left with an iPhone’s camera, proceeding to a PoseNet model, followed by a generic human figure with the 17 labeled joints, and ends with the same human figure but with the joints connected in a wireframe.](Documentation/PoseNetPipeline.png)  
 

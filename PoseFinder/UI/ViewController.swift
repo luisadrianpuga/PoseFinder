@@ -16,7 +16,7 @@ class ViewController: UIViewController {
 
     private let videoCapture = VideoCapture()
 
-    private let poseNet = PoseNet()
+    private var poseNet: PoseNet!
 
     /// The frame the PoseNet model is currently making pose predictions from.
     private var currentFrame: CGImage?
@@ -34,6 +34,13 @@ class ViewController: UIViewController {
 
         // For convenience, the idle timer is disabled to prevent the screen from locking.
         UIApplication.shared.isIdleTimerDisabled = true
+
+        do {
+            poseNet = try PoseNet()
+        } catch {
+            fatalError("Failed to load model. \(error.localizedDescription)")
+        }
+
         poseNet.delegate = self
         setupAndBeginCapturingVideoFrames()
     }

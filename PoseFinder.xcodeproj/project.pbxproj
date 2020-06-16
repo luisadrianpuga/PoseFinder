@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D8F3BA524375A1C00662BEC /* PoseNetMobileNet075S16FP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0D8F3BA424375A1C00662BEC /* PoseNetMobileNet075S16FP16.mlmodel */; };
+		0D4BB83F249769C800076D64 /* PoseNetMobileNet075S16FP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BB83E249769C800076D64 /* PoseNetMobileNet075S16FP16.mlmodel */; };
 		0DCEF2C7241666CA00ECEC99 /* PoseBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEF2C6241666CA00ECEC99 /* PoseBuilder.swift */; };
 		0DCEF2C92416701D00ECEC99 /* PoseBuilder+Single.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEF2C82416701D00ECEC99 /* PoseBuilder+Single.swift */; };
 		0DCEF2CB2416709B00ECEC99 /* PoseBuilder+Multiple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEF2CA2416709B00ECEC99 /* PoseBuilder+Multiple.swift */; };
@@ -34,7 +34,7 @@
 
 /* Begin PBXFileReference section */
 		0563E980FDE557646F54ED8A /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.txt; sourceTree = "<group>"; };
-		0D8F3BA424375A1C00662BEC /* PoseNetMobileNet075S16FP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = PoseNetMobileNet075S16FP16.mlmodel; sourceTree = "<group>"; };
+		0D4BB83E249769C800076D64 /* PoseNetMobileNet075S16FP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = PoseNetMobileNet075S16FP16.mlmodel; sourceTree = "<group>"; };
 		0DCEF2C6241666CA00ECEC99 /* PoseBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseBuilder.swift; sourceTree = "<group>"; };
 		0DCEF2C82416701D00ECEC99 /* PoseBuilder+Single.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoseBuilder+Single.swift"; sourceTree = "<group>"; };
 		0DCEF2CA2416709B00ECEC99 /* PoseBuilder+Multiple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoseBuilder+Multiple.swift"; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 		6594E51B23454C4100D3C44D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0D8F3BA424375A1C00662BEC /* PoseNetMobileNet075S16FP16.mlmodel */,
+				0D4BB83E249769C800076D64 /* PoseNetMobileNet075S16FP16.mlmodel */,
 				4AE8C3D023AD2D3B005F9953 /* PoseNetInput.swift */,
 				4AE8C3D223AD2D8A005F9953 /* PoseNetOutput.swift */,
 				4AA5C4B922BBBC2A00277977 /* PoseNet.swift */,
@@ -280,7 +280,7 @@
 				4ADD52F822BBCF580008FAAC /* Joint.swift in Sources */,
 				4ADE4C8C2346C07300FFD895 /* AVCaptureVideoOrientation+Extension.swift in Sources */,
 				4AE8C3CB23ACDF1C005F9953 /* PoseImageView.swift in Sources */,
-				0D8F3BA524375A1C00662BEC /* PoseNetMobileNet075S16FP16.mlmodel in Sources */,
+				0D4BB83F249769C800076D64 /* PoseNetMobileNet075S16FP16.mlmodel in Sources */,
 				4A2D23B222BB70E400494C55 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
