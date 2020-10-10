@@ -1,19 +1,20 @@
 # Detecting Human Body Poses in an Image
 
-Locate people and the stance of their bodies by analyzing an image with a PoseNet model.  
+Locate people and the stance of their bodies by analyzing an image with a PoseNet model.
 
 ## Overview
 
-This sample project demonstrates how to use a PoseNet model to augment a video stream from a camera. PoseNet models detect 17 different body parts or joints: eyes, ears, nose, shoulders, hips, elbows, knees, wrists, and ankles. Collectively these joints form a pose.
+This sample project provides an illustrative example of using a third-party [Core ML](https://developer.apple.com/documentation/coreml) model, PoseNet, to detect human body poses from frames captured using a camera. PoseNet models detect 17 different body parts or joints: eyes, ears, nose, shoulders, hips, elbows, knees, wrists, and ankles. Collectively these joints form a pose.
 
-![Flow diagram illustrating the sequence of activities for estimating a pose. The flow begins on the left with an iPhone’s camera, proceeding to a PoseNet model, followed by a generic human figure with the 17 labeled joints, and ends with the same human figure but with the joints connected in a wireframe.](Documentation/PoseNetPipeline.png)  
+![Flow diagram illustrating the sequence of activities for estimating a pose. The flow begins on the left with an iPhone’s camera, proceeding to a PoseNet model, followed by a generic human figure with the 17 labeled joints, and ends with the same human figure but with the joints connected in a wireframe.](Documentation/PoseNetPipeline.png)
 
-The sample finds the locations of the 17 joints for each person in the image and draws a wireframe pose on top of them.  
-- Note: Run this sample on a device with iOS 13 or later, or iPadOS 13 or later.  
+The sample finds the locations of the 17 joints for each person in the image and draws a wireframe pose on top of them.
+
+- Note: Starting in iOS 14 and macOS 11, [Vision](https://developer.apple.com/documentation/vision) adds the ability to detect human body poses. For details, see [Detecting Human Body Poses in Images](https://developer.apple.com/documentation/vision/detecting_human_body_poses_in_images).
 
 ## Configure the Capture Session
 
-The sample starts by getting an image from the device’s built-in camera using an [`AVCaptureSession`](https://developer.apple.com/documentation/avfoundation/avcapturesession) (see [Setting Up a Capture Session](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session)).  
+The sample starts by getting an image from the device’s built-in camera using an [`AVCaptureSession`](https://developer.apple.com/documentation/avfoundation/avcapturesession) (see [Setting Up a Capture Session](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session)).
 
 ``` swift
 if captureSession.isRunning {
@@ -58,7 +59,7 @@ DispatchQueue.main.sync {
 
 ## Prepare the Input for the PoseNet Model
 
-After receiving the captured image, the app wraps it in an instance of [`PoseNetInput`](x-source-tag://PoseNetInput), a custom feature provider, to resize the image to the specified size.  
+After receiving the captured image, the app wraps it in an instance of [`PoseNetInput`](x-source-tag://PoseNetInput), a custom feature provider, to resize the image to the specified size.
 
 ``` swift
 // Wrap the image in an instance of PoseNetInput to have it resized
@@ -68,7 +69,7 @@ let input = PoseNetInput(image: image, size: self.modelInputSize)
 
 ## Pass the Input to the PoseNet Model
 
-The sample app then proceeds to pass the input to the PoseNet’s [`prediction`](https://developer.apple.com/documentation/coreml/mlmodel/2880280-prediction) function to obtain its outputs, which the app uses to detect poses.  
+The sample app then proceeds to pass the input to the PoseNet’s [`prediction`](https://developer.apple.com/documentation/coreml/mlmodel/2880280-prediction) function to obtain its outputs, which the app uses to detect poses.
 
 ``` swift
 guard let prediction = try? self.poseNetMLModel.prediction(from: input) else {
@@ -76,7 +77,7 @@ guard let prediction = try? self.poseNetMLModel.prediction(from: input) else {
 }
 ```
 
-Next, the sample app wraps the PoseNet model outputs in an instance of [`PoseNetOutput`](x-source-tag://PoseNetOutput), along with the model's input size and output stride, before passing it back to the assigned delegate for analysis.  
+Next, the sample app wraps the PoseNet model outputs in an instance of [`PoseNetOutput`](x-source-tag://PoseNetOutput), along with the model's input size and output stride, before passing it back to the assigned delegate for analysis.
 
 ``` swift
 let poseNetOutput = PoseNetOutput(prediction: prediction,
@@ -90,7 +91,7 @@ DispatchQueue.main.async {
 
 ## Analyze the PoseNet Output to Locate Joints
 
-The sample uses one of two algorithms to locate the joints of either one person or multiple persons. The single-person algorithm, the simplest and fastest, inspects the model’s outputs to locate the most prominent joints in the image and uses these joints to construct a single pose.  
+The sample uses one of two algorithms to locate the joints of either one person or multiple persons. The single-person algorithm, the simplest and fastest, inspects the model’s outputs to locate the most prominent joints in the image and uses these joints to construct a single pose.
 
 ``` swift
 var pose = Pose()
@@ -114,7 +115,7 @@ pose.joints.values.forEach { joint in
 return pose
 ```
 
-The multiple-person algorithm first identifies a set of candidate root joints as starting points. It uses these root joints to find neighboring joints and repeats the process until it has located all 17 joints of each person. For example, the algorithm may find a left knee with a high confidence, and then search for its adjacent joints, the left ankle and left hip.  
+The multiple-person algorithm first identifies a set of candidate root joints as starting points. It uses these root joints to find neighboring joints and repeats the process until it has located all 17 joints of each person. For example, the algorithm may find a left knee with a high confidence, and then search for its adjacent joints, the left ankle and left hip.
 
 ``` swift
 var detectedPoses = [Pose]()
@@ -162,7 +163,7 @@ return detectedPoses
 
 ## Visualize the Detected Poses
 
-For each detected pose, the sample app draws a wireframe over the input image, connecting the lines between the joints and then drawing circles for the joints themselves.  
+For each detected pose, the sample app draws a wireframe over the input image, connecting the lines between the joints and then drawing circles for the joints themselves.
 
 ![Illustration of a wireframe of connected joints drawn over a generic human figure performing a yoga tree pose.](Documentation/PoseNetVisualization.png)
 
